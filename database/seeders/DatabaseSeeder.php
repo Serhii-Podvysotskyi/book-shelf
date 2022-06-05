@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => Role::$ADMIN_ROLE]);
+        $this->call([
+            RoleSeeder::class,
+            GenreSeeder::class,
+        ]);
     }
 }

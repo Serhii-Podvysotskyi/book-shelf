@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'csrf_token' => csrf_token(),
-            'auth.user' => $request->user() ? $request->user()->only('id', 'name', 'email') : null,
+            'auth.user' => is_null($request->user()) ? null : new UserResource($request->user()),
         ]);
     }
 }

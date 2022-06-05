@@ -36,8 +36,8 @@ class AuthTest extends TestCase
     {
         $this->get('/login')
             ->assertInertia(function (Assert $page) {
-                $page->component('Auth/Login') // Should return Login page
-                ->has('csrf_token'); // Should have CSRF token
+                $page->component('Auth/Login')
+                    ->has('csrf_token');
             });
     }
 
@@ -80,8 +80,8 @@ class AuthTest extends TestCase
     {
         $this->get('/register')
             ->assertInertia(function (Assert $page) {
-                $page->component('Auth/Register') // Should return Login page
-                ->has('csrf_token'); // Should have CSRF token
+                $page->component('Auth/Register')
+                    ->has('csrf_token');
             });
     }
 
@@ -103,11 +103,12 @@ class AuthTest extends TestCase
 
         $this->post('/register', $data)
             ->assertValid()
-            ->assertRedirect(url(RouteServiceProvider::HOME)); // Should redirect to home
+            ->assertRedirect(url(RouteServiceProvider::HOME));
 
         // Check if user model was created
         $this->assertDatabaseHas('users', [
-            'name' => $data['name'], 'email' => $data['email']
+            'name' => $data['name'],
+            'email' => $data['email'],
         ]);
     }
 
@@ -120,7 +121,7 @@ class AuthTest extends TestCase
     {
         $this->get('/demo')
             ->assertValid()
-            ->assertRedirect(url(RouteServiceProvider::HOME)); // Should redirect to home
+            ->assertRedirect(url(RouteServiceProvider::HOME));
 
         // Check if user model was created
         $this->assertDatabaseHas('users', [

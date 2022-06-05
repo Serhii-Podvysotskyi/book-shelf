@@ -18,7 +18,8 @@ class BookFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->title(),
-            'year' => $this->faker->year(),
+            'author' => $this->faker->name(),
+            'year' => (int)$this->faker->year(),
             'description' => $this->faker->text(),
             'image' => $this->faker->imageUrl(),
             'demo' => $this->faker->boolean(),

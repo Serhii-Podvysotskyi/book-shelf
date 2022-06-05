@@ -10,6 +10,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $email
+ * @property boolean $demo
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
@@ -57,6 +63,8 @@ class User extends Authenticatable
 
     /**
      * Get the books for the user.
+     *
+     * @return HasMany
      */
     public function books(): HasMany
     {
@@ -65,6 +73,8 @@ class User extends Authenticatable
 
     /**
      * Get role for the user.
+     *
+     * @return belongsTo
      */
     public function role(): BelongsTo
     {
