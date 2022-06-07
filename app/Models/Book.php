@@ -19,6 +19,7 @@ use Illuminate\Support\Collection;
  * @property boolean $demo
  * @property User $user
  * @property Collection $genres
+ * @property integer $user_id
  */
 class Book extends Model
 {
